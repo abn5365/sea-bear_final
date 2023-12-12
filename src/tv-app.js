@@ -44,10 +44,10 @@ export class TvApp extends LitElement {
         padding: 5px;
         gap: 5px;
       }
-      .grid
+      .screen
       {
           height: 357px;
-          width: 600px;
+          width: 1000px;
       }
       .grid-attributes
         {
@@ -64,20 +64,34 @@ export class TvApp extends LitElement {
           padding-top: 5px;
           padding-left: 25px;
         }
-        .descriptionSlides
+        .description
         {
-          width: 600px;
+          width: 1000px;
           height: 250px;
           background-color: black;
-         // border:  1px solid red;
         }
         .descriptionContent
         {
           font-size: 16px;
           color: white;
-
+        }
+        .button-container {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 100px; 
+          margin-right:50%;
         }
         
+        .previous,
+        .next {
+          width: 10%; 
+          height: 20%;
+          box-sizing: border-box;
+          text-align: center;
+          background-color: blue;
+          color: white;
+
+        }
       `
     ];
   }
@@ -86,15 +100,17 @@ export class TvApp extends LitElement {
     // this.currentVidTime();
     return html ` 
       <div class="grid-container">
-      <div class="grid">
+      <div class="screen">
           <video-player source="${this.video}"></video-player>
-          <div class="descriptionSlides">
+          <div class="description">
            <h3 class="descriptionContent"> "${this.currentInfo}"</h3>
       </div>
         </div>
       <div class="grid-attributes">
         <div class="scroll-container"> 
         
+       
+          
         ${
           this.listings.map(
             (list) => html`
@@ -109,6 +125,11 @@ export class TvApp extends LitElement {
         }
         </div>
       </div>
+    </div>
+    <div class="button-container">
+    <div class="previous">Previous Slide</button>
+    </div>
+    <div class="next">Next Slide</button>
     </div>
     `;
     }
@@ -133,7 +154,7 @@ export class TvApp extends LitElement {
       this.listings.forEach((list) => {
         const currentTimecode = list.timecode;
   
-        // Check if the absolute difference is within the threshold
+       
         if (Math.abs(timeNow - currentTimecode) < this.timeThreshold) {
           this.currentInfo = list.description;
           return;
