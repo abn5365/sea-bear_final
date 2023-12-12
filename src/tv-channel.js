@@ -26,8 +26,13 @@ export class TvChannel extends LitElement {
         display: inline-flex;
       }
       .wrapper {
-        padding: 16px;
-        background-color: #eeeeee;
+        width: 350px;
+        height: 150px;
+        background-color: white;
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 5px;
+        font-family: 'Open Sans', sans-serif;
       }
     `;
   }

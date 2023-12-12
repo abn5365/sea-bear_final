@@ -2,59 +2,159 @@
   "status": 200,
   "data": {
     "id": "123-123-123-123",
-    "title": "EdTechJokerTV",
-    "author": "EdTechJoker",
-    "description": "A series of talks to learn about JSON and web standard communications",
-    "license": "by-sa",
+    "title": "GreekMythos",
+    "author": "Ovid",
+    "description": "About Greek Myths",
+    "license": "...",
     "metadata": {},
     "items": [
       {
-        "id": "item-1",
+        "id": "123",
         "indent": 0,
-        "location": "hax-wp-killer.html",
-        "slug": "hax-wp-killer",
         "order": 0,
         "parent": null,
-        "title": "HAX: Wordpress Killer",
-        "description": "The future we need, not the future we have.",
+        "title": "The start",
+        "description": "Demeter: the goddess of Agriculture, Grain, and Fertility Persephone: Demeter's daugther", 
         "metadata": {
-          "source": "https://www.youtube.com/watch?v=9MT-BNuUCpM",
+          "source": "https://www.youtube.com/watch?v=68h8-ESTY6o",
           "timecode": 0,
-          "author":"Bryan Ollendyke",
+          "author":"TedEd",
           "created": 1697033522,
           "updated": 1697034021
         }
       },
       {
-        "id": "item-3421",
+        "id": "456",
         "indent": 0,
-        "location": "hax-wp-killer.html",
-        "slug": "hax-wp-killer",
         "order": 0,
         "parent": null,
-        "title": "HAX: sdffs sdsffsf",
-        "description": "The future we need, not the future we have.",
+        "title":"Hades and the day of Persephone's kidnap",
+        "description": "Hades: King of the underworld",
         "metadata": {
-          "source": "https://www.youtube.com/watch?v=9MT-BNuUCpM",
-          "timecode": 0,
-          "author":"Bryan Ollendyke",
+          "source": "https://www.youtube.com/watch?v=68h8-ESTY6o",
+          "timecode": 35,
+          "author":"TedEd",
           "created": 1697033522,
           "updated": 1697034021
         }
       },
       {
-        "id": "item-2",
+        "id": "789",
         "indent": 0,
-        "location": "this-is-water.html",
-        "slug": "this-is-water",
         "order": 0,
         "parent": null,
-        "title": "This, is water",
-        "description": "What is water?",
+        "title":"Persephone's kidnap",
+        "description": "Persephone ends up in the Underworld;The Underworld is where dead souls end up in",
         "metadata": {
-          "source": "https://www.youtube.com/watch?v=eC7xzavzEKY",
-          "timecode": 45,
-          "author":"David Foster Wallace",
+          "source": "https://www.youtube.com/watch?v=68h8-ESTY6o",
+          "timecode": 51,
+          "author":"TedEd",
+          "created": 1697033522,
+          "updated": 1697034021
+        }
+      },
+      {
+        "id": "123abc",
+        "indent": 0,
+        "order": 0,
+        "parent": null,
+        "title":"Demeter's search",
+        "description": "Demeter realizes that Zeus agreed with Hades taking away Persephone. She searchers for Persehpone on her own",
+        "metadata": {
+          "source": "https://www.youtube.com/watch?v=68h8-ESTY6o",
+          "timecode": 84,
+          "author":"TedEd",
+          "created": 1697033522,
+          "updated": 1697034021
+        }
+      },
+      {
+        "id": "456def",
+        "indent": 0,
+        "order": 0,
+        "parent": null,
+        "title":"Persephone in the Underworld",
+        "description": "IDK what to say",
+        "metadata": {
+          "source": "https://www.youtube.com/watch?v=68h8-ESTY6o",
+          "timecode": 117,
+          "author":"TedEd",
+          "created": 1697033522,
+          "updated": 1697034021
+        }
+      },
+      {
+        "id": "789ghi",
+        "indent": 0,
+        "order": 0,
+        "parent": null,
+        "title":"Persephone's current life in the Underworld",
+        "description": "Still idk",
+        "metadata": {
+          "source": "https://www.youtube.com/watch?v=68h8-ESTY6o",
+          "timecode": 143,
+          "author":"TedEd",
+          "created": 1697033522,
+          "updated": 1697034021
+        }
+      },
+      {
+        "id": "ABC123",
+        "indent": 0,
+        "order": 0,
+        "parent": null,
+        "title":"Demeter's continued Search",
+        "description": "IDK IDK",
+        "metadata": {
+          "source": "https://www.youtube.com/watch?v=68h8-ESTY6o",
+          "timecode": 182,
+          "author":"TedEd",
+          "created": 1697033522,
+          "updated": 1697034021
+        }
+      },
+      {
+        "id": "DEF456",
+        "indent": 0,
+        "order": 0,
+        "parent": null,
+        "title":"Persephone's fate",
+        "description": "IDK MAN",
+        "metadata": {
+          "source": "https://www.youtube.com/watch?v=68h8-ESTY6o",
+          "timecode": 220,
+
+          "author":"TedEd",
+          "created": 1697033522,
+          "updated": 1697034021
+        }
+      },
+      {
+        "id": "GHI789",
+        "indent": 0,
+        "order": 0,
+        "parent": null,
+        "title":"The pact",
+        "description": "IDK man, really",
+        "metadata": {
+          "source": "https://www.youtube.com/watch?v=68h8-ESTY6o",
+          "timecode": 250,
+          "author":"TedEd",
+          "created": 1697033522,
+          "updated": 1697034021
+        }
+      },
+      {
+        "id": "000",
+        "indent": 0,
+        "order": 0,
+        "parent": null,
+        "title":"End",
+        "description": "IDK",
+        "metadata": {
+          "source": "https://www.youtube.com/watch?v=68h8-ESTY6o",
+          "timecode": 292,
+          "author":"TedEd",
           "created": 1697033522,
           "updated": 1697034021
         }
