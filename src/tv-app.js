@@ -2,7 +2,7 @@
 import { LitElement, html, css } from 'lit';
 import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
-import "@lrnwebcomponents/video-player/video-player.js";
+import '@lrnwebcomponents/video-player/video-player.js';
 import "./tv-channel.js";
 
 export class TvApp extends LitElement {
@@ -10,15 +10,10 @@ export class TvApp extends LitElement {
   constructor() {
     super();
     this.name = '';
-    this.jsonfile = new URL('../assets/channels.json', import.meta.url).href;
+    this.source = new URL('../assets/channels.json', import.meta.url).href;
     this.listings = [];
-    this.source = "https://www.youtube.com/watch?v=68h8-ESTY6o";
-    this.info = " ";
-    this.activeItem = {
-      title: null,
-      id: null,
-      description: null,
-    };
+    this.video = "https://www.youtube.com/watch?v=68h8-ESTY6o";
+    this.currentInfo="";
   }
   // convention I enjoy using to define the tag's name
   static get tag() {
@@ -29,14 +24,12 @@ export class TvApp extends LitElement {
     return {
       name: { type: String },
       source: { type: String },
-      jsonfile: { type: String},
-      info: {type: String},
       listings: { type: Array },
-      activeItem: { type: Object }
+      currentInfo:{type: String}
     };
   }
-   // LitElement convention for applying styles JUST to our element
-   static get styles() {
+  // LitElement convention for applying styles JUST to our element
+  static get styles() {
     return [
       css`
       :host {
@@ -51,17 +44,17 @@ export class TvApp extends LitElement {
         padding: 5px;
         gap: 5px;
       }
-      .grid-item1
+      .grid
       {
           height: 357px;
           width: 600px;
       }
-      .grid-item2
+      .grid-attributes
         {
           height: 820px;
           width: 400px;
           border: 1px solid rgba(0, 0, 0, 0.8);
-          background-color: grey;
+          background-color: #3392FF;
         }
         .scroll-container 
         {
@@ -93,13 +86,13 @@ export class TvApp extends LitElement {
     // this.currentVidTime();
     return html ` 
       <div class="grid-container">
-      <div class="grid-item1">
-          <video-player source="${this.source}"></video-player>
+      <div class="grid">
+          <video-player source="${this.video}"></video-player>
           <div class="descriptionSlides">
            <h3 class="descriptionContent"> "${this.currentInfo}"</h3>
       </div>
         </div>
-      <div class="grid-item2">
+      <div class="grid-attributes">
         <div class="scroll-container"> 
         
         ${
