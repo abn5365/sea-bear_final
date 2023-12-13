@@ -14,6 +14,7 @@ export class TvApp extends LitElement {
     this.listings = [];
     this.video = "https://www.youtube.com/watch?v=68h8-ESTY6o";
     this.currentInfo="";
+    this.activeIndex =0;
   }
   // convention I enjoy using to define the tag's name
   static get tag() {
@@ -25,7 +26,9 @@ export class TvApp extends LitElement {
       name: { type: String },
       source: { type: String },
       listings: { type: Array },
-      currentInfo:{type: String}
+      currentInfo:{type: String},
+      active:{type:Boolean, reflect: true},
+      activeIndex:{type: Number},
     };
   }
   // LitElement convention for applying styles JUST to our element
@@ -68,7 +71,7 @@ export class TvApp extends LitElement {
         {
           width: 1000px;
           height: 250px;
-          background-color: black;
+          background-color: #3392FF;
         }
         .descriptionContent
         {
@@ -88,7 +91,7 @@ export class TvApp extends LitElement {
           height: 20%;
           box-sizing: border-box;
           text-align: center;
-          background-color: blue;
+          background-color: #2A6AA3;
           color: white;
 
         }
@@ -103,7 +106,7 @@ export class TvApp extends LitElement {
       <div class="screen">
           <video-player source="${this.video}"></video-player>
           <div class="description">
-           <h3 class="descriptionContent"> "${this.currentInfo}"</h3>
+           <h3 class="descriptionContent"> "${this.listings.length > 0 ? this.listings[this.activeIndex].description : ''}"</h3>
       </div>
         </div>
       <div class="grid-attributes">
@@ -113,9 +116,11 @@ export class TvApp extends LitElement {
           
         ${
           this.listings.map(
-            (list) => html`
+            (list,index) => html`
             <tv-channel
             title= "${list.title}"
+            ?active="${index === this.activeIndex}"
+            index="${index}"
             timecode= "${list.metadata.timecode}"
             @click="${this.currentItem}"
           >
@@ -127,17 +132,76 @@ export class TvApp extends LitElement {
       </div>
     </div>
     <div class="button-container">
-    <div class="previous">Previous Slide</button>
+    <div class="previous" @click="${this.prevSlide}">Previous Slide</button>
     </div>
-    <div class="next">Next Slide</button>
+    <div class="next" @click="${this.nextSlide}">Next Slide</button>
     </div>
     `;
     }
      
   // LitElement life cycle for when any property changes
+  connectedCallback() {
+    this.changeSlide();
+    super.connectedCallback(); 
+    
+   }
+   prevSlide()
+   {
+     this.activeIndex--;
+   }
+   nextSlide()
+   {
+     this.activeIndex++;
+   }
+ changeSlide()
+ {
+   setInterval(() => {
+     const currentTime = this.shadowRoot.querySelector('video-player').shadowRoot.querySelector('a11y-media-player').media.currentTime;
+ 
+     if (this.activeIndex + 1 < this.listings.length &&
+         currentTime >= this.listings[this.activeIndex + 1].metadata.timecode) {
+       this.activeIndex++;
+      
+     }
+   }, 1000);
+ }
 
+ 
+ currentItem(e) {
+  console.log(e.target);
+  this.activeIndex= e.target.index;
+  this.shadowRoot.querySelector('video-player').shadowRoot.querySelector('a11y-media-player').play();
+}
 
-  currentItem(e) {
+updated(changedProperties) {
+  if (super.updated) {
+    super.updated(changedProperties);
+  }
+  changedProperties.forEach((oldValue, propName) => {
+    if (propName === "source" && this[propName]) {
+      this.updateSourceData(this[propName]);
+    }
+    if(propName === "activeIndex"){
+      var currentLectureSlide = this.shadowRoot.querySelector("tv-channel[index = '" + this.activeIndex + "' ] ");
+      this.shadowRoot.querySelector('video-player').shadowRoot.querySelector('a11y-media-player').seek(currentLectureSlide.timecode);
+    }
+  });
+}
+
+async updateSourceData(data) {
+  await fetch(data)
+    .then((resp) => resp.ok ? resp.json() : [])
+    .then((responseData) => {
+      if (responseData.status === 200 && responseData.data.items && responseData.data.items.length > 0) 
+      {
+        this.listings = [...responseData.data.items];
+        
+      }
+
+    });
+}
+
+ currentItem(e) {
     
     console.log(e.target);
     this.shadowRoot.querySelector('video-player').shadowRoot.querySelector('a11y-media-player').play();
@@ -147,45 +211,7 @@ export class TvApp extends LitElement {
    {
 
    }
-  currentVidTime()
-  {
-      const timeNow = this.shadowRoot.querySelector('video-player').shadowRoot.querySelector("a11y-media-player").media.currentTime;
-  
-      this.listings.forEach((list) => {
-        const currentTimecode = list.timecode;
-  
-       
-        if (Math.abs(timeNow - currentTimecode) < this.timeThreshold) {
-          this.currentInfo = list.description;
-          return;
-        }
-      });
-}
-
-  updated(changedProperties) {
-    if (super.updated) {
-      super.updated(changedProperties);
-    }
-    changedProperties.forEach((oldValue, propName) => {
-      if (propName === "source" && this[propName]) {
-        this.updateSourceData(this[propName]);
-      }
-    });
-  }
-
-  async updateSourceData(data) {
-    await fetch(data)
-      .then((resp) => resp.ok ? resp.json() : [])
-      .then((responseData) => {
-        if (responseData.status === 200 && responseData.data.items && responseData.data.items.length > 0) 
-        {
-          this.listings = [...responseData.data.items];
-          
-        }
-
-      });
-  }
-  
+ 
 
 }
 // tell the browser about our tag and class it should run when it sees it

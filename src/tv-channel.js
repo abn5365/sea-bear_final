@@ -33,7 +33,7 @@ export class TvChannel extends LitElement {
         font-size: 18px;
         text-align: center;
         margin-bottom: 5px;
-        font-family: 'Open Sans', sans-serif;
+        font: Arial;
       }
     `;
   }
